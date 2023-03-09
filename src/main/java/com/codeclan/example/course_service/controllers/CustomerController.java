@@ -24,16 +24,16 @@ public class CustomerController {
             @RequestParam(name = "age", required = false) Integer age
     ){
         if(town != null && age != null && courseId != null){
-            return new ResponseEntity<>(customerRepository.findByTownAndAgeGreaterThanAndBookingsCourseId(town, age, courseId), HttpStatus.OK);
+            return new ResponseEntity<>(customerRepository.findByTownIgnoreCaseAndAgeGreaterThanAndBookingsCourseId(town, age, courseId), HttpStatus.OK);
         }
         if(town != null && courseId != null){
-            return new ResponseEntity<>(customerRepository.findByTownAndBookingsCourseId(town, courseId), HttpStatus.OK);
+            return new ResponseEntity<>(customerRepository.findByTownIgnoreCaseAndBookingsCourseId(town, courseId), HttpStatus.OK);
         }
         if(courseId != null){
             return new ResponseEntity<>(customerRepository.findByBookingsCourseId(courseId), HttpStatus.OK);
         }
         if(town != null){
-            return new ResponseEntity<>(customerRepository.findByTown(town), HttpStatus.OK);
+            return new ResponseEntity<>(customerRepository.findByTownIgnoreCase(town), HttpStatus.OK);
         }
 
         return new ResponseEntity<>(customerRepository.findAll(), HttpStatus.OK);
