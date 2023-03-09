@@ -14,10 +14,36 @@ public class Booking {
     @Column(name = "date")
     private String date;
 
+    @ManyToOne
+    @JoinColumn(name = "customer")
+    private Customer customer;
+
+    @ManyToOne
+    @JoinColumn(name = "course")
+    private Course course;
+
     public Booking() {}
 
-    public Booking(String date) {
+    public Booking(String date, Customer customer, Course course) {
         this.date = date;
+        this.customer = customer;
+        this.course = course;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public Long getId() {
